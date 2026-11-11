@@ -7,6 +7,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -29,4 +30,20 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+	/**
+	 * Связь: у пользователя много категорий.
+	 */
+	public function categories(): HasMany
+	{
+		return $this->hasMany(Category::class, 'user_id','id');
+	}
+
+	/**
+	 * Связь: у пользователя много транзакций.
+	 */
+	public function transactions(): HasMany
+	{
+		return $this->hasMany(Transaction::class, 'user_id','id');
+	}
 }
