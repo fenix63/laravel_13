@@ -3,17 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
 
 	/**
-	 * Связь: у категории несколько пользователей.
+	 * Связь: Категория принадлежит пользователю
 	 */
-	public function user(): HasMany
+	public function user(): BelongsTo
 	{
-		return $this->hasMany(User::class, 'id','user_id');
+		return $this->belongsTo(User::class, 'id','user_id');
 	}
 
 	/**
