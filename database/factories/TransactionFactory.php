@@ -18,7 +18,10 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id'=>2,
+			'category_id'=>1,
+			'amount'=>$this->faker->randomFloat(2, 10),
+			'date'=>$this->faker->date(),
         ];
     }
 }

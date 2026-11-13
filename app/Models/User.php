@@ -18,6 +18,13 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+	public static function getUserIdList(): array
+	{
+		//$usersData =  self::all(['id']);
+		$usersData =  self::query()->pluck('id')->all();
+		return $usersData;
+	}
+	
     /**
      * Get the attributes that should be cast.
      *

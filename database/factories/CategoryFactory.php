@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 /**
  * @extends Factory<Category>
@@ -17,8 +18,24 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            //
-        ];
+		$userIdList = User::getUserIdList();
+
+		return [
+			'user_id' => $this->faker->randomElement($userIdList),
+			'name' => $this->faker->name(),
+			'type' => $this->faker->randomElement(['income', 'expense'])
+		];
     }
+
+	/**
+	 * Когда надо добавить свой параметр
+	 * @param int $userId
+	 * @return CategoryFactory|Factory
+	 */
+	public function withUser(int $userId)
+	{
+		return $this->state(fn (array $attributes) => [
+			'user_id' => $userId,
+		]);
+	}
 }
