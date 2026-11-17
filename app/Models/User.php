@@ -41,7 +41,7 @@ class User extends Authenticatable
 	/**
 	 * Связь: у пользователя много категорий.
 	 */
-	public function categories(): HasMany
+	public function category(): HasMany
 	{
 		return $this->hasMany(Category::class, 'user_id','id');
 	}
@@ -49,7 +49,7 @@ class User extends Authenticatable
 	/**
 	 * Связь: у пользователя много транзакций.
 	 */
-	public function transactions(): HasMany
+	public function transaction(): HasMany
 	{
 		return $this->hasMany(Transaction::class, 'user_id','id');
 	}

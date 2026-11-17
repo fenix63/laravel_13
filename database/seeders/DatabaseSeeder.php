@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,6 +22,10 @@ class DatabaseSeeder extends Seeder
 		$newUserData = User::factory()->create();
 		$newUserDataId = $newUserData->id;
 
-		Category::factory()->withUser($newUserDataId)->create();
+		$category = Category::factory()->withUser($newUserDataId)->create();
+		$categoryId = $category->id;
+
+		$transaction = Transaction::factory()->withUser($newUserDataId, $categoryId)->create();
+		$test = '123';
     }
 }

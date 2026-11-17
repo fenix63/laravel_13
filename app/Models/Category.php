@@ -24,7 +24,7 @@ class Category extends Model
 	/**
 	 * Связь: у категории много транзакций.
 	 */
-	public function transactions(): HasMany
+	public function transaction(): HasMany
 	{
 		return $this->hasMany(Transaction::class, 'id','id');
 	}

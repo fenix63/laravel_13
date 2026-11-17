@@ -17,11 +17,24 @@ class TransactionFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'user_id'=>2,
-			'category_id'=>1,
-			'amount'=>$this->faker->randomFloat(2, 10),
-			'date'=>$this->faker->date(),
-        ];
+		return [
+			'user_id' => 2,
+			'category_id' => 1,
+			'amount' => $this->faker->randomFloat(8, 2),
+			'date' => $this->faker->date(),
+		];
     }
+
+	/**
+	 * Когда надо добавить свой параметр
+	 * @param int $userId
+	 * @return TransactionFactory|Factory
+	 */
+	public function withUser(int $userId, int $categoryId)
+	{
+		return $this->state(fn (array $attributes) => [
+			'user_id' => $userId,
+			'category_id' => $categoryId,
+		]);
+	}
 }
