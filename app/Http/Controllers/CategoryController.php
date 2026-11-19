@@ -20,15 +20,17 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
+	 * Создание записи в БД
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+		$recordId = Category::add($request);
+		return response()->json(['result' => $recordId]);
     }
 
     /**
