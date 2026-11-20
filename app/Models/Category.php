@@ -70,4 +70,9 @@ class Category extends Model
 		]);
 
 	}
+
+	public static function updateCategory(StoreCategoryRequest $request): bool
+	{
+		return true;
+	}
 }

@@ -53,9 +53,10 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreCategoryRequest $request)
     {
-        //
+		$result = Category::updateCategory($request);
+		return response()->json(['result' => $result]);
     }
 
     /**
@@ -63,6 +64,6 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
     }
 }
