@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Schema;
+use App\Http\Requests\StoreCategoryRequest;
 
 class Category extends Model
 {
@@ -32,7 +33,7 @@ class Category extends Model
 		return $this->hasMany(Transaction::class, 'id','id');
 	}
 
-	public static function add(Request $request)
+	public static function add(StoreCategoryRequest $request)
 	{
 		$columns = Schema::getColumnListing('categories');
 		$keyToDelete = ['id','created_at','updated_at'];
