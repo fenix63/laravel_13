@@ -24,6 +24,6 @@ class DatabaseSeeder extends Seeder
 		$categoryId = $category->id;
 
 		$transaction = Transaction::factory()->withUser($newUserDataId, $categoryId)->create();
-		$test = '123';
+
     }
 }

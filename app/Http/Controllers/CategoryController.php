@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -27,7 +28,7 @@ class CategoryController extends Controller
 	 * Создание записи в БД
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
 		$recordId = Category::add($request);
 		return response()->json(['result' => $recordId]);

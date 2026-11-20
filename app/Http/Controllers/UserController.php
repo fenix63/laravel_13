@@ -12,4 +12,9 @@ class UserController extends Controller
 		$test = '123';
 		return response()->json(['result' => 'test']);
     }
+
+	public static function getUserCategoryList()
+	{
+		
+	}
 }
