@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
 
@@ -53,8 +54,10 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreCategoryRequest $request)
+    public function update(UpdateCategoryRequest $request, Category $category): RedirectResponse
     {
+		$this->authorize('update', $category);
+
 		$result = Category::updateCategory($request);
 		return response()->json(['result' => $result]);
     }
