@@ -8,4 +8,4 @@ use Illuminate\Http\Request;
 Route::get('/test/', [UserController::class, 'test']);
 Route::get('/categories/user/{user_id}', [CategoryController::class, 'index']);
 Route::post('/categories/add/', [CategoryController::class, 'store']);
-Route::post('/categories/update/', [CategoryController::class, 'update']);
+Route::put('/categories/{category}/', [CategoryController::class, 'update']);

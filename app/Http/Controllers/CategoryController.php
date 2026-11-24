@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
+use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
@@ -54,12 +56,17 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category): RedirectResponse
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-		$this->authorize('update', $category);
+		// Сюда код доходит ТОЛЬКО если:
+		// 1. authorize() вернул true (иначе 403)
+		// 2. Валидация прошла (иначе редирект назад с ошибками)
 
-		$result = Category::updateCategory($request);
-		return response()->json(['result' => $result]);
+		//$result = Category::updateCategory($request);
+		$test = $category->update($request->validated());
+		return redirect()
+			->route('categories.index')
+			->with('success', 'Категория обновлена');
     }
 
     /**
