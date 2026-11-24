@@ -63,10 +63,8 @@ class CategoryController extends Controller
 		// 2. Валидация прошла (иначе редирект назад с ошибками)
 
 		//$result = Category::updateCategory($request);
-		$test = $category->update($request->validated());
-		return redirect()
-			->route('categories.index')
-			->with('success', 'Категория обновлена');
+		$updateResult = $category->update($request->validated());
+		return response()->json(['result' => $updateResult]);
     }
 
     /**
