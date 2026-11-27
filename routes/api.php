@@ -27,12 +27,14 @@ Route::post('/login', function (Request $request) {
 
 // Защищённые маршруты
 Route::middleware('auth:sanctum')->group(function () {
+	Route::get('/categories/my', [CategoryController::class, 'getCurrentUserCategories']);
+	Route::get('/categories/user/{user_id}', [CategoryController::class, 'index']);
+
+
 	Route::apiResource('categories', CategoryController::class);
-	Route::put('/categories/{category}/', [CategoryController::class, 'update']);
-	// другие защищённые маршруты...
 });
 
 
 Route::get('/test/', [UserController::class, 'test']);
-Route::get('/categories/user/{user_id}', [CategoryController::class, 'index']);
+
 Route::post('/categories/add/', [CategoryController::class, 'store']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
@@ -18,6 +19,13 @@ class CategoryController extends Controller
     {
 		return Category::index($userid);
     }
+
+	public function getCurrentUserCategories(Request $request): JsonResponse
+	{
+		$test = '123';
+
+		return Category::index((string) $request->user()->id);
+	}
 
     /**
      * Show the form for creating a new resource.
